@@ -1,0 +1,17 @@
+surface band (
+	color purple = color (0.202,0.131,0.233),
+	color beige = color (0.700,0.588,0.420),
+	output color Cout = 0
+)
+{
+	point PP=transform("object",P);
+    vector d=normalize(PP);
+    float repeatCount=2;
+    float s=atan2(d[0],d[1])/(2*M_PI)*repeatCount ;
+    float t=d[2]*repeatCount;
+			
+	if(t>0.65)
+		Cout = purple;
+    else
+		Cout = beige + (float)noise("uperlin",PP*7) * 0.5;
+}

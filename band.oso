@@ -1,0 +1,74 @@
+OpenShadingLanguage 1.00
+# Compiled by oslc 1.8.2.pixar1697a56
+# options: 
+surface band
+param	color	purple	0.20200001 0.131 0.233		%read{14,14} %write{2147483647,-1}
+param	color	beige	0.69999999 0.588 0.41999999		%read{18,18} %write{2147483647,-1}
+oparam	color	Cout	0 0 0		%read{2147483647,-1} %write{14,18}
+global	point	P	%read{1,1} %write{2147483647,-1}
+local	point	PP	%read{2,15} %write{1,1}
+local	vector	d	%read{4,10} %write{2,2}
+local	float	repeatCount	%read{9,11} %write{3,3}
+local	float	s	%read{2147483647,-1} %write{9,9}
+local	float	t	%read{12,12} %write{11,11}
+const	string	$const1	"object"		%read{1,1} %write{2147483647,-1}
+const	string	$const2	"transform"		%read{0,0} %write{2147483647,-1}
+const	string	$const3	"common"		%read{1,1} %write{2147483647,-1}
+const	int	$const4	2		%read{3,10} %write{2147483647,-1}
+temp	float	$tmp1	%read{8,8} %write{6,6}
+const	int	$const5	0		%read{4,4} %write{2147483647,-1}
+temp	float	$tmp2	%read{6,6} %write{4,4}
+const	int	$const6	1		%read{5,5} %write{2147483647,-1}
+temp	float	$tmp3	%read{6,6} %write{5,5}
+const	float	$const7	3.1415927		%read{7,7} %write{2147483647,-1}
+temp	float	$tmp4	%read{8,8} %write{7,7}
+const	float	$const8	2		%read{7,7} %write{2147483647,-1}
+temp	float	$tmp5	%read{9,9} %write{8,8}
+temp	float	$tmp6	%read{11,11} %write{10,10}
+const	float	$const9	0.64999998		%read{12,12} %write{2147483647,-1}
+temp	int	$tmp7	%read{13,13} %write{12,12}
+temp	float	$tmp8	%read{17,17} %write{16,16}
+const	string	$const10	"uperlin"		%read{16,16} %write{2147483647,-1}
+temp	point	$tmp9	%read{16,16} %write{15,15}
+const	float	$const12	7		%read{15,15} %write{2147483647,-1}
+const	float	$const13	0.5		%read{17,17} %write{2147483647,-1}
+temp	float	$tmp10	%read{18,18} %write{17,17}
+code ___main___
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:8
+#     vector d=normalize(PP);
+	functioncall	$const2 2 	%filename{"C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl"} %line{8} %argrw{"r"}
+# C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h:258
+# normal transform (matrix Mto, normal p) BUILTIN;
+	transform	PP $const3 $const1 P 	%filename{"C:/Program Files\\Pixar\\RenderManProServer-22.4\\lib\\osl\\include\\stdosl.h"} %line{258} %argrw{"wrrr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:9
+#     float repeatCount=2;
+	normalize	d PP 	%filename{"C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl"} %line{9} %argrw{"wr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:10
+#     float s=atan2(d[0],d[1])/(2*M_PI)*repeatCount ;
+	assign		repeatCount $const4 	%line{10} %argrw{"wr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:11
+#     float t=d[2]*repeatCount;
+	compref		$tmp2 d $const5 	%line{11} %argrw{"wrr"}
+	compref		$tmp3 d $const6 	%argrw{"wrr"}
+	atan2		$tmp1 $tmp2 $tmp3 	%argrw{"wrr"}
+	mul		$tmp4 $const8 $const7 	%argrw{"wrr"}
+	div		$tmp5 $tmp1 $tmp4 	%argrw{"wrr"}
+	mul		s $tmp5 repeatCount 	%argrw{"wrr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:12
+# 			
+	compref		$tmp6 d $const4 	%line{12} %argrw{"wrr"}
+	mul		t $tmp6 repeatCount 	%argrw{"wrr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:14
+# 		Cout = purple;
+	gt		$tmp7 t $const9 	%line{14} %argrw{"wrr"}
+	if		$tmp7 15 19 	%argrw{"r"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:15
+#     else
+	assign		Cout purple 	%line{15} %argrw{"wr"}
+# C:\\Users\\bfarq\\Documents\\GitHub\\RenderingProject\\band.osl:17
+# }
+	mul		$tmp9 PP $const12 	%line{17} %argrw{"wrr"}
+	noise		$tmp8 $const10 $tmp9 	%argrw{"wrr"}
+	mul		$tmp10 $tmp8 $const13 	%argrw{"wrr"}
+	add		Cout beige $tmp10 	%argrw{"wrr"}
+	end

@@ -1,0 +1,15 @@
+Pixar PhotoRealistic RenderMan 22.4
+copyright (c) 1988-2019 Pixar.
+linked Tue Mar 05 11:58:46 2019 Pacific Standard Time @1946009
+build windows10_x86-64_vc14icc170_external_release
+
+Rendered on Fri May 17 11:24:27 GMT Daylight Time 2019
+Rendering at 1024x720 pixels, 64 maxsamples
+	"rgb.exr" (mode = Ci,a, type = it)
+
+       Max resident mem: 445.91 MB
+       Page faults: 116380, Peak pagefile usage: 690.98 MB, Peak paged pool usage:  0.40 MB
+
+       Real time:     00:32
+       User time:     02:23
+       Sys time:      00:10
